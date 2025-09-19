@@ -1,12 +1,8 @@
-﻿using Backend.BuildingBlocks.Exceptions;
+﻿using FluentValidation;
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using FluentValidation;
 
-
-namespace BuildingBlocks.Exceptions.Handler
+namespace Backend.BuildingBlocks.Exceptions.Handler
 {
     public class CustomExceptionHandler 
         (ILogger<CustomExceptionHandler> logger)
