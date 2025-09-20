@@ -2,6 +2,6 @@ namespace Backend.Models.Enums;
 
 public enum Status
 {
-    Pending = 1,
-    Completed = 2
+    PENDING = 1,
+    COMPLETED = 2
 }

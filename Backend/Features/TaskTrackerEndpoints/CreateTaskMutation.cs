@@ -5,9 +5,10 @@ using MediatR;
 
 namespace Backend.Features.TaskTrackerEndpoints;
 
-public class CreateTaskMutation(IMediator mediator)
+[ExtendObjectType(OperationTypeNames.Mutation)]
+public class CreateTaskMutation
 {
-    public async Task<TaskResponse> CreateTask(TaskRequest request)
+    public async Task<TaskResponse> CreateTask(TaskRequest request,[Service] IMediator mediator)
     {
         // Map request to command
         var command = request.Adapt<CreateTaskCommand>();
@@ -23,7 +24,7 @@ public class CreateTaskMutation(IMediator mediator)
         }
 
         // Map TaskEntity to TaskResponse
-        var response = result.Value.Adapt<TaskResponse>();
+        var response = new TaskResponse(result.Value.Id, result.Value.Title, result.Value.Description, Enum.GetName(result.Value.Status));
 
         return response;
     }

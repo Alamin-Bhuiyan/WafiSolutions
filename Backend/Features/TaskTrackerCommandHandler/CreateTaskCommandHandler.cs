@@ -30,7 +30,7 @@ public class CreateTaskCommandHandler(ITaskRepository taskRepository) : IRequest
         {
             Title = request.Title,
             Description = request.Description,
-            Status = Status.Pending,
+            Status = Status.PENDING,
             CreatedAt = DateTime.Now,
             UpdatedAt = DateTime.Now,
         };

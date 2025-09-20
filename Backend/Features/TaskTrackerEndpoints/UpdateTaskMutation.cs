@@ -1,14 +1,14 @@
 using Backend.Contracts;
 using Backend.Features.TaskTrackerCommandHandler;
 using Backend.Models.Enums;
-using Mapster;
 using MediatR;
 
 namespace Backend.Features.TaskTrackerEndpoints;
 
-public class UpdateTaskMutation(IMediator mediator)
+[ExtendObjectType(OperationTypeNames.Mutation)]
+public class UpdateTaskMutation
 {
-    public async Task<TaskResponse> UpdateTask(Guid id, Status status)
+    public async Task<TaskResponse> UpdateTask(Guid id, Status status,[Service] IMediator mediator)
     {
         // Map request to command
         var command = new UpdateTaskCommand(id, status);
@@ -24,7 +24,9 @@ public class UpdateTaskMutation(IMediator mediator)
         }
 
         // Map TaskEntity to TaskResponse
-        var response = result.Value.Adapt<TaskResponse>();
+        var response = new TaskResponse(result.Value.Id, result.Value.Title, result.Value.Description,
+            Enum.GetName(result.Value.Status));
+
 
         return response;
     }

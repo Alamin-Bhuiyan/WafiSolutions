@@ -26,12 +26,12 @@ public static class DependencyInjection
         // MediatR
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly));
 
-        // GraphQL
         services
             .AddGraphQLServer()
             .AddQueryType<GetTasksQuery>()
-            .AddMutationType<CreateTaskMutation>()
-            .AddMutationType<UpdateTaskMutation>()
+            .AddMutationType(d => d.Name("Mutation")) // define root Mutation
+            .AddTypeExtension<CreateTaskMutation>()   // extend root Mutation
+            .AddTypeExtension<UpdateTaskMutation>()   // extend root Mutation
             .AddProjections()
             .AddFiltering()
             .AddSorting();

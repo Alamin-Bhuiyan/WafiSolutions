@@ -14,7 +14,7 @@ public class TaskRepository(ApplicationDbContext dbContext) : ITaskRepository
 
     public async Task<List<TaskEntity>> GetAllAsync(CancellationToken cancellationToken)
     {
-        return await dbContext.Tasks.AsNoTracking().ToListAsync(cancellationToken);
+        return await dbContext.Tasks.OrderByDescending(src => src.UpdatedAt).ToListAsync(cancellationToken);
     }
 
     public async Task<TaskEntity> UpdateAsync(TaskEntity taskEntity, CancellationToken cancellationToken)

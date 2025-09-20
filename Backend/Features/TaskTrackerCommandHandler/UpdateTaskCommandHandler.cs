@@ -32,6 +32,7 @@ public class UpdateTaskCommandHandler(ITaskRepository taskRepository) : IRequest
 
         
         taskEntity.Status = request.Status;
+        taskEntity.UpdatedAt = DateTime.Now;
         
         await taskRepository.UpdateAsync(taskEntity, cancellationToken);
         return taskEntity;
