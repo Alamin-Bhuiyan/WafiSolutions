@@ -1,0 +1,185 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Modern professional design system */
+
+@layer base {
+  :root {
+    /* Clean modern background */
+    --background: 0 0% 98%;
+    --foreground: 220 13% 18%;
+
+    /* Professional blue-based brand colors */
+    --primary: 220 70% 50%;
+    --primary-foreground: 0 0% 100%;
+    --primary-light: 220 70% 60%;
+    --primary-lighter: 220 70% 95%;
+
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 13% 18%;
+
+    /* Clear status colors */
+    --success: 142 71% 45%;
+    --success-foreground: 0 0% 100%;
+    --success-light: 142 71% 95%;
+    
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+    --warning-light: 38 92% 95%;
+
+    /* Clean UI colors */
+    --card: 0 0% 100%;
+    --card-foreground: 220 13% 18%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 8% 46%;
+
+    --accent: 220 70% 95%;
+    --accent-foreground: 220 70% 25%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 220 70% 50%;
+
+    --radius: 8px;
+  }
+
+  .dark {
+    --background: 222 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --primary: 220 70% 60%;
+    --primary-foreground: 222 84% 4.9%;
+    --primary-light: 220 70% 70%;
+    --primary-lighter: 220 70% 15%;
+
+    --secondary: 217 32% 17%;
+    --secondary-foreground: 210 40% 98%;
+
+    --success: 142 71% 55%;
+    --success-foreground: 222 84% 4.9%;
+    --success-light: 142 71% 15%;
+    
+    --warning: 38 92% 60%;
+    --warning-foreground: 222 84% 4.9%;
+    --warning-light: 38 92% 15%;
+
+    --card: 222 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 217 32% 17%;
+    --accent-foreground: 210 40% 98%;
+
+    --border: 217 32% 17%;
+    --input: 217 32% 17%;
+    --ring: 220 70% 60%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+@layer components {
+  /* Clean task card styles */
+  .task-card {
+    @apply relative bg-card rounded-lg border border-border p-5 transition-all duration-200 hover:shadow-lg hover:border-primary/20;
+  }
+
+  .task-card-completed {
+    background-color: hsl(var(--success) / 0.05);
+    border-color: hsl(var(--success) / 0.2);
+  }
+
+  .task-card-pending {
+    @apply bg-card border-border;
+  }
+
+  /* Clean form container */
+  .task-form-container {
+    @apply bg-card rounded-xl p-6 border border-border shadow-sm;
+  }
+
+  /* Main task area */
+  .task-list-container {
+    @apply bg-card rounded-xl border border-border shadow-sm min-h-[600px];
+  }
+
+  /* Status badges */
+  .badge-completed {
+    background-color: hsl(var(--success));
+    color: hsl(var(--success-foreground));
+    @apply px-3 py-1 rounded-full text-xs font-medium;
+  }
+
+  .badge-pending {
+    background-color: hsl(var(--warning));
+    color: hsl(var(--warning-foreground));
+    @apply px-3 py-1 rounded-full text-xs font-medium;
+  }
+
+  /* Stats cards */
+  .stats-card {
+    @apply bg-muted rounded-lg p-4 text-center border;
+    border-color: hsl(var(--border) / 0.5);
+  }
+
+  .stats-card-primary {
+    background-color: hsl(var(--primary) / 0.05);
+    border-color: hsl(var(--primary) / 0.2);
+    color: hsl(var(--primary));
+  }
+
+  .stats-card-success {
+    background-color: hsl(var(--success) / 0.05);
+    border-color: hsl(var(--success) / 0.2);
+    color: hsl(var(--success));
+  }
+
+  .stats-card-warning {
+    background-color: hsl(var(--warning) / 0.05);
+    border-color: hsl(var(--warning) / 0.2);
+    color: hsl(var(--warning));
+  }
+}
+
+@layer utilities {
+  /* Custom animations */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  @keyframes bounce-in {
+    0% { transform: scale(0.3) translate3d(0,0,0); opacity: 0; }
+    50% { transform: scale(1.05); }
+    70% { transform: scale(0.9); opacity: 1; }
+    100% { transform: scale(1) translate3d(0,0,0); opacity: 1; }
+  }
+
+  @keyframes slide-up {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .animate-bounce-in {
+    animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.4s ease-out forwards;
+  }
+
+  .animate-shimmer {
+    animation: shimmer 1.5s infinite;
+  }
+}
