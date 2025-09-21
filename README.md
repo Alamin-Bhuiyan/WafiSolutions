@@ -144,7 +144,7 @@ docker compose up --build
 ```
 - This builds images and starts containers for backend, frontend, and PostgreSQL.
 
-5. **Open the app**
+4. **Open the app**
 - `http://localhost:3000/`  
 
 ---
