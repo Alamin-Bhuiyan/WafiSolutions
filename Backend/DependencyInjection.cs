@@ -11,6 +11,9 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructureServices(this IServiceCollection services, IConfiguration configuration)
     {
+        var conn = ConnectionManager.GetPostgresConnectionString();
+        Console.WriteLine(">>> Using connection string: " + conn);
+
         // DbContext with PostgreSQL
         services.AddDbContext<ApplicationDbContext>(options =>
             options.UseNpgsql(ConnectionManager.GetPostgresConnectionString()));

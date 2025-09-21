@@ -4,11 +4,6 @@ FROM node:18-alpine AS builder
 # Set working directory
 WORKDIR /app
 
-# Build-time argument for API URL (available during build)
-ARG REACT_APP_API_URL
-# Make available as environment var during build
-ENV REACT_APP_API_URL=${REACT_APP_API_URL}
-
 # Install dependencies (use package-lock.json if present)
 COPY package*.json ./
 RUN npm ci --silent
@@ -23,7 +18,10 @@ RUN npm run build && \
 # Stage 2: serve with nginx
 FROM nginx:alpine
 
-# Copy built static files from builder
+# Copy custom nginx config to enable proxying /graphql to the backend service
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+
+# Copy built static files from builder. Support both build/ and dist/
 COPY --from=builder /app/build /usr/share/nginx/html
 
 # Expose port 80

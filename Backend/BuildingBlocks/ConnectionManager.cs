@@ -8,12 +8,12 @@ public class ConnectionManager
     {
         Env.Load(); // Load environment variables
 
-        var host = Env.GetString("DB_HOST");
-        var database = Env.GetString("DB_DATABASE");
-        var username = Env.GetString("DB_USERNAME");
-        var password = Env.GetString("DB_PASSWORD");
-        var port = Env.GetString("DB_PORT") ?? "5432"; // Default PostgreSQL port
-
+        var host = Environment.GetEnvironmentVariable("DB_HOST");
+        var database = Environment.GetEnvironmentVariable("DB_DATABASE");
+        var username = Environment.GetEnvironmentVariable("DB_USERNAME");
+        var password = Environment.GetEnvironmentVariable("DB_PASSWORD");
+        var port = Environment.GetEnvironmentVariable("DB_PORT");
+        
         var connectionString = $"Host={host};Port={port};Database={database};Username={username};Password={password};Pooling=true;";
 
         return connectionString;
