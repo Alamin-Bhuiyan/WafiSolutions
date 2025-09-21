@@ -1,4 +1,7 @@
-# Task Tracker with AI Assistance
+# Task Tracker
+
+**Preview**
+<img width="1442" height="896" alt="image" src="https://github.com/user-attachments/assets/88edca64-6825-4c40-b568-763cebb336cd" />
 
 ## Overview
 A minimal Task Tracker web app (single-page) built with:
@@ -145,6 +148,7 @@ docker compose up --build
 - This builds images and starts containers for backend, frontend, and PostgreSQL.
 
 4. **Open the app**
-- `http://localhost:3000/`  
+- `http://localhost:3000/`
+
 
 ---
